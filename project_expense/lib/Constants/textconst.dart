@@ -7,6 +7,7 @@ class TextConst {
   static String msg1 = "No Date Selected";
   static String time = "time";
   static String msg2 = "No Time Selected";
+  static String msg3 = "Enter Data in all Text Fields";
   static String expense = "Expense";
   static String income = "Income";
   static String amount = "amount";

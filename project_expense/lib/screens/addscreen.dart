@@ -71,7 +71,7 @@ class _AddScreenState extends State<AddScreen> {
                 builder: (BuildContext context) {
                   return AlertDialog(
                     title: Text(TextConst.alert),
-                    content: Text(TextConst.alert),
+                    content: Text(TextConst.msg3),
                     actions: [
                       TextButton(
                         onPressed: () {
