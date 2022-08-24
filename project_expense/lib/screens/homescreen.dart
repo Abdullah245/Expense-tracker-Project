@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget pieChartExampleOne() {
     return PieChart(
       colorList: [
-        Color(ClrConst.green),
+        Color(ClrConst.red),
         Color(ClrConst.green),
       ],
       chartValuesOptions: const ChartValuesOptions(showChartValues: false),
