@@ -1,8 +1,8 @@
-// ignore_for_file: prefer_typing_uninitialized_variables
-
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:project_expense/Constants/colorconst.dart';
+import 'package:project_expense/Constants/textconst.dart';
 
-// ignore: must_be_immutable
 class CusTime extends StatefulWidget {
   var textFieldHint;
   var time;
@@ -26,17 +26,17 @@ class _CusTimeState extends State<CusTime> {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: Color(ClrConst.white),
               borderRadius: BorderRadius.circular(10),
             ),
             height: MediaQuery.of(context).size.height * 0.07,
             width: MediaQuery.of(context).size.width * 0.14,
             child: IconButton(
               onPressed: pickTime,
-              icon: const Icon(
+              icon: Icon(
                 Icons.access_time,
                 size: 25,
-                color: Colors.blueGrey,
+                color: Color(ClrConst.bluegrey2),
               ),
             ),
           ),
@@ -52,10 +52,13 @@ class _CusTimeState extends State<CusTime> {
                 readOnly: true,
                 onTap: pickTime,
                 decoration: InputDecoration(
-                  fillColor: Colors.white,
+                  fillColor: Color(ClrConst.white),
                   filled: true,
                   hintText: widget.textFieldHint,
-                  hintStyle: const TextStyle(fontSize: 18, color: Colors.grey),
+                  hintStyle: TextStyle(
+                    fontSize: 18,
+                    color: Color(ClrConst.lightshadegray),
+                  ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide.none),
@@ -84,11 +87,11 @@ class _CusTimeState extends State<CusTime> {
       return showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text("No Time Selected"),
+          title: Text(TextConst.msg2),
           actions: [
             TextButton(
               onPressed: (() => Navigator.pop(context)),
-              child: const Text('Ok'),
+              child: Text(TextConst.ok),
             ),
           ],
         ),

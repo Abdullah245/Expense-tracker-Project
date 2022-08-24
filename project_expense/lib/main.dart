@@ -1,10 +1,11 @@
+// ignore_for_file: avoid_print, unused_local_variable
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:project_expense/screens/homescreen.dart';
-
-import 'firebase_options.dart';
 import 'package:project_expense/screens/addscreen.dart';
+import 'package:project_expense/screens/homescreen.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,9 +36,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: AddScreen(),
     );
   }
 }

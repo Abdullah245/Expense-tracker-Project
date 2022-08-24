@@ -3,6 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project_expense/Constants/colorconst.dart';
 import 'package:project_expense/Constants/textconst.dart';
 import 'package:project_expense/screens/homescreen.dart';
 import '../Widget/cusbutton.dart';
@@ -19,22 +20,23 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
   CollectionReference exp =
-      FirebaseFirestore.instance.collection('expense_tracker');
+      FirebaseFirestore.instance.collection(TextConst.expensetracker);
 
   Future<void> add() {
-    
     return exp
-        .add({
-          'title': titleController.text,
-          'descrip': descripController.text,
-          'date': dateController.text,
-          'time': timeController.text,
-          'dropdown': dropdownvalue,
-          'amount': amountController.text,
-          'uid': FirebaseAuth.instance.currentUser?.uid
-        },)
-        .then((value) => print("Done"))
-        .catchError((error) => print("couldn't be added."));
+        .add(
+          {
+            TextConst.title: titleController.text,
+            TextConst.description: descripController.text,
+            TextConst.date: dateController.text,
+            TextConst.time: timeController.text,
+            TextConst.dropdown: dropdownvalue,
+            TextConst.amount: amountController.text,
+            TextConst.uid: FirebaseAuth.instance.currentUser?.uid
+          },
+        )
+        .then((value) => print(TextConst.done))
+        .catchError((error) => print(TextConst.error));
   }
 
   var choice = [TextConst.income, TextConst.expense];
@@ -65,28 +67,32 @@ class _AddScreenState extends State<AddScreen> {
               );
             } else {
               return showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('Alert'),
-                      content: Text(TextConst.alert),
-                      actions: [
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text(
-                              'Ok',
-                              style: TextStyle(color: Colors.blueGrey),
-                            ),),
-                      ],
-                    );
-                  },);
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text(TextConst.alert),
+                    content: Text(TextConst.alert),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text(
+                          TextConst.ok,
+                          style: TextStyle(
+                            color: Color(ClrConst.bluegrey),
+                          ),
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              );
             }
           },
-          child: Icon(Icons.check),
+          child: const Icon(Icons.check),
         ),
-        backgroundColor: Color(0xFFC9CCCE),
+        backgroundColor: Color(ClrConst.clr1),
         body: Center(
           child: Column(
             children: [
@@ -101,7 +107,7 @@ class _AddScreenState extends State<AddScreen> {
                     max: 1,
                     min: 1,
                     i: 30,
-                    text: "Title"),
+                    text: TextConst.title2),
               ),
               CusTextField(
                   w: 0.9,
@@ -112,7 +118,7 @@ class _AddScreenState extends State<AddScreen> {
                   max: 6,
                   min: 6,
                   i: 100,
-                  text: "Description"),
+                  text: TextConst.description2),
               CusDate(
                 textFieldHint: TextConst.date,
                 cont: dateController,
@@ -126,7 +132,7 @@ class _AddScreenState extends State<AddScreen> {
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.9,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: Color(ClrConst.white),
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                   child: Padding(
@@ -136,16 +142,17 @@ class _AddScreenState extends State<AddScreen> {
                         value: dropdownvalue,
                         icon: Icon(
                           Icons.keyboard_arrow_down,
-                          color: Colors.blueGrey,
+                          color: Color(ClrConst.bluegrey),
                         ),
-                        items: choice.map((String items){
+                        items: choice.map((String items) {
                           return DropdownMenuItem(
                             value: items,
-                            child: Text(items,
-                              // TextConst.expense,
-                              style: TextStyle(color: Colors.grey),
+                            child: Text(
+                              items,
+                              style: TextStyle(
+                                  color: Color(ClrConst.lightshadegray)),
                             ),
-                            );
+                          );
                         }).toList(),
                         onChanged: (String? value) {
                           setState(() {
@@ -168,7 +175,7 @@ class _AddScreenState extends State<AddScreen> {
                     max: 1,
                     min: 1,
                     i: null,
-                    text: "Amount"),
+                    text: TextConst.amount2),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -181,13 +188,13 @@ class _AddScreenState extends State<AddScreen> {
                         if (cursorPos > 0) {
                           String suffixText =
                               amountController.text.substring(cursorPos);
-    
+
                           String prefixText =
                               amountController.text.substring(0, cursorPos);
-    
+
                           amountController.text =
                               prefixText + i.toString() + suffixText;
-    
+
                           amountController.selection = TextSelection(
                             baseOffset: cursorPos + 1,
                             extentOffset: cursorPos + 1,
@@ -210,13 +217,13 @@ class _AddScreenState extends State<AddScreen> {
                         if (cursorPos > 0) {
                           String suffixText =
                               amountController.text.substring(cursorPos);
-    
+
                           String prefixText =
                               amountController.text.substring(0, cursorPos);
-    
+
                           amountController.text =
                               prefixText + i.toString() + suffixText;
-    
+
                           amountController.selection = TextSelection(
                             baseOffset: cursorPos + 1,
                             extentOffset: cursorPos + 1,
@@ -237,13 +244,13 @@ class _AddScreenState extends State<AddScreen> {
                       if (cursorPos > 0) {
                         String suffixText =
                             amountController.text.substring(cursorPos);
-    
+
                         String prefixText =
                             amountController.text.substring(0, cursorPos);
-    
+
                         amountController.text =
                             prefixText + i.toString() + suffixText;
-    
+
                         amountController.selection = TextSelection(
                           baseOffset: cursorPos + 1,
                           extentOffset: cursorPos + 1,
@@ -264,13 +271,13 @@ class _AddScreenState extends State<AddScreen> {
                         if (cursorPos > 0) {
                           String suffixText =
                               amountController.text.substring(cursorPos);
-    
+
                           String prefixText =
                               amountController.text.substring(0, cursorPos);
-    
+
                           amountController.text =
                               prefixText + 0.toString() + suffixText;
-    
+
                           amountController.selection = TextSelection(
                             baseOffset: cursorPos + 1,
                             extentOffset: cursorPos + 1,
@@ -284,7 +291,6 @@ class _AddScreenState extends State<AddScreen> {
                       amountController.text = amountController.text
                           .substring(0, amountController.text.length - 1);
                     },
-                    child: Text(TextConst.delete),
                     style: ButtonStyle(
                       elevation: MaterialStateProperty.all(10),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -293,13 +299,16 @@ class _AddScreenState extends State<AddScreen> {
                         ),
                       ),
                       minimumSize: MaterialStateProperty.all(
-                        Size(130, 40),
+                        const Size(130, 40),
                       ),
-                      backgroundColor: MaterialStateProperty.all(Colors.red),
+                      backgroundColor: MaterialStateProperty.all(
+                        Color(ClrConst.red),
+                      ),
                     ),
+                    child: Text(TextConst.delete),
                   )
                 ],
-              )
+              ),
             ],
           ),
         ),

@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project_expense/Constants/colorconst.dart';
 
-// ignore: must_be_immutable
 class CusTextField extends StatelessWidget {
   var w;
   var h;
@@ -40,7 +42,7 @@ class CusTextField extends StatelessWidget {
         inputFormatters: [LengthLimitingTextInputFormatter(i)],
         decoration: InputDecoration(
           filled: true,
-          fillColor: Colors.white,
+          fillColor: Color(ClrConst.white),
           hintText: text,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10.0),

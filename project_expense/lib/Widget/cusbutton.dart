@@ -1,4 +1,7 @@
+// ignore_for_file: prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
+import 'package:project_expense/Constants/colorconst.dart';
 
 class CusButton extends StatefulWidget {
   final int number;
@@ -22,17 +25,24 @@ class _CusButtonState extends State<CusButton> {
       child: ElevatedButton(
         onPressed: widget.onPressed,
         style: ButtonStyle(
-            elevation: MaterialStateProperty.all(10),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
+          elevation: MaterialStateProperty.all(10),
+          shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
             ),
-            fixedSize: MaterialStateProperty.all(const Size.square(40)),
-            backgroundColor: MaterialStateProperty.all(Colors.white)),
+          ),
+          fixedSize: MaterialStateProperty.all(
+            const Size.square(40),
+          ),
+          backgroundColor: MaterialStateProperty.all(
+            Color(ClrConst.white),
+          ),
+        ),
         child: Text(
           widget.number.toString(),
-          style: const TextStyle(color: Colors.blueGrey),
+          style: TextStyle(
+            color: Color(ClrConst.bluegrey2),
+          ),
         ),
       ),
     );

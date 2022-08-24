@@ -1,13 +1,13 @@
 
 class ExpenseClass {
   String amount;
-  String ddVal;
+  String dropDownValue;
 
-  ExpenseClass({required this.amount, required this.ddVal});
+  ExpenseClass({required this.amount, required this.dropDownValue});
   factory ExpenseClass.fromMap(Map<String, dynamic> map) {
     return ExpenseClass(
       amount: map['amount'],
-      ddVal: map['dropdown'],
+      dropDownValue: map['dropdown'],
     );
   }
 }

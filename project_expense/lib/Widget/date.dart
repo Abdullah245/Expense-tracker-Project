@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:project_expense/Constants/colorconst.dart';
+import 'package:project_expense/Constants/textconst.dart';
 
 // ignore: must_be_immutable
 class CusDate extends StatefulWidget {
@@ -26,16 +28,16 @@ class _CusDateState extends State<CusDate> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.white,
+              color: Color(ClrConst.white),
             ),
             height: MediaQuery.of(context).size.height * 0.07,
             width: MediaQuery.of(context).size.width * 0.14,
             child: IconButton(
               onPressed: pickdate,
-              icon: const Icon(
+              icon: Icon(
                 Icons.calendar_month,
                 size: 25,
-                color: Colors.blueGrey,
+                color: Color(ClrConst.bluegrey2),
               ),
             ),
           ),
@@ -51,12 +53,12 @@ class _CusDateState extends State<CusDate> {
                 readOnly: true,
                 onTap: pickdate,
                 decoration: InputDecoration(
-                  fillColor: Colors.white,
+                  fillColor: Color(ClrConst.white),
                   filled: true,
                   hintText: widget.textFieldHint,
-                  hintStyle: const TextStyle(
+                  hintStyle: TextStyle(
                     fontSize: 18,
-                    color: Colors.grey,
+                    color: Color(ClrConst.lightshadegray),
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
@@ -85,11 +87,11 @@ class _CusDateState extends State<CusDate> {
       return showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('No Date Selected'),
+          title: Text(TextConst.msg1),
           actions: [
             TextButton(
               onPressed: (() => Navigator.pop(context)),
-              child: const Text('Ok'),
+              child: Text(TextConst.ok),
             ),
           ],
         ),
